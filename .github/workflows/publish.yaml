@@ -3,8 +3,8 @@ name: Publish Blog
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "davidbour/**"
+    # paths:
+    #   - "davidbour/**"
 
 jobs:
   publish:
