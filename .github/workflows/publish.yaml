@@ -7,33 +7,33 @@ on:
       - "davidbour/**"
 
 jobs:
-  runs-on: ubuntu-latest
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: v18.11.0
+          cache: npm
 
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: v18.11.0
-        cache: npm
+      - name: Install
+        run: npm ci
+        working-directory: davidbour
 
-    - name: Install
-      run: npm ci
-      working-directory: davidbour
+      - name: Build
+        run: npm run build
+        working-directory: davidbour
 
-    - name: Build
-      run: npm run build
-      working-directory: davidbour
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          workload_identity_provider: 'projects/650273226296/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions'
+          service_account: 'github-actions@cloudresume-380001.iam.gserviceaccount.com'
 
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        workload_identity_provider: 'projects/650273226296/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions'
-        service_account: 'github-actions@cloudresume-380001.iam.gserviceaccount.com'
-
-    - uses: 'google-github-actions/upload-cloud-storage@v1'
-      with:
-        path: './davidbour/dist/'
-        destination: 'davidbour-cloud-resume/'
+      - uses: 'google-github-actions/upload-cloud-storage@v1'
+        with:
+          path: './davidbour/dist/'
+          destination: 'davidbour-cloud-resume/'
