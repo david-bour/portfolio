@@ -40,3 +40,4 @@ jobs:
         with:
           path: './davidbour/dist/'
           destination: 'davidbour-cloud-resume/'
+          parent: false
