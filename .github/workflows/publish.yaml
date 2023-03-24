@@ -2,9 +2,6 @@ name: Publish Blog
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "davidbour/**"
 
 jobs:
   publish:
