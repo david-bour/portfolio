@@ -17,7 +17,7 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "cloud-resume-site" {
-  name          = "cloud-resume-website"
+  name          = "cloud-resume-static-website"
   location      = "US"
   force_destroy = true
 
