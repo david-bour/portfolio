@@ -44,6 +44,7 @@ resource "google_storage_bucket_iam_member" "default" {
 resource "google_compute_backend_bucket" "default" {
   name        = "cloud-resume-backend-bucket"
   description = "cloud resume backend"
+  bucket_name = google_storage_bucket.default.name
   enable_cdn  = true
   cdn_policy {
     cache_mode        = "CACHE_ALL_STATIC"
