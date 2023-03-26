@@ -9,7 +9,6 @@ terraform {
       version = "4.58.0"
     }
   }
-
 }
 
 provider "google" {
@@ -47,13 +46,13 @@ resource "google_compute_backend_bucket" "default" {
   name        = "cloud-resume-backend-bucket"
   description = "cloud resume backend"
   enable_cdn  = true
-  cdn_policy  {
-    cache_mode          = "CACHE_ALL_STATIC"
-    client_ttl          = 3600
-    default_ttl         = 3600
-    max_ttl             = 86400
-    negative_caching    = true
-    serve_while_stale   = 86400
+  cdn_policy {
+    cache_mode        = "CACHE_ALL_STATIC"
+    client_ttl        = 3600
+    default_ttl       = 3600
+    max_ttl           = 86400
+    negative_caching  = true
+    serve_while_stale = 86400
   }
 }
 
@@ -74,9 +73,9 @@ resource "google_compute_managed_ssl_certificate" "default" {
 
 # HTTP Proxy
 resource "google_compute_target_https_proxy" "default" {
-  name              = "cloud-https-proxy"
-  url_map           = google_compute_url_map.default.id
-  ssl_certificates  = [google_compute_managed_ssl_certificate.default.id]
+  name             = "cloud-https-proxy"
+  url_map          = google_compute_url_map.default.id
+  ssl_certificates = [google_compute_managed_ssl_certificate.default.id]
 }
 
 # Forwarding Rule
