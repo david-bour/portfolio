@@ -23,7 +23,6 @@ resource "google_compute_global_address" "default" {
 # Create Bucket
 resource "google_storage_bucket" "default" {
   name          = "davidbour-cloud-resume"
-  description   = "Resume Website Static Assets"
   location      = "us-east1"
   force_destroy = true
 
