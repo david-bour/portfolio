@@ -50,9 +50,9 @@ resource "google_compute_backend_bucket" "default" {
     cache_mode        = "CACHE_ALL_STATIC"
     client_ttl        = 3600
     default_ttl       = 3600
-    max_ttl           = 86400
+    max_ttl           = 3600
     negative_caching  = true
-    serve_while_stale = 86400
+    serve_while_stale = 3600
   }
 }
 
