@@ -27,11 +27,12 @@ jobs:
         with:
           token_format: 'access_token'
           workload_identity_provider: 'projects/650273226296/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions'
-          service_account: cloudresume-380001.iam.gserviceaccount.com
+          service_account: 'tf-provider@cloudresume-380001.iam.gserviceaccount.com'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
+          terraform_version: 1.4.2
           cli_config_credentials_token: ${{ steps.auth.outputs.access_token }}
       
       - name: Terraform Format
@@ -84,3 +85,8 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve -input=false
+        working-directory: ops/deployment/infrastructure/terraform
