@@ -80,10 +80,10 @@ resource "google_compute_target_https_proxy" "default" {
 
 # Forwarding Rule
 resource "google_compute_global_forwarding_rule" "default" {
-  name                  = "http-lb-forwarding-rule"
+  name                  = "https-lb-forwarding-rule"
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL"
-  port_range            = "80"
+  port_range            = "443"
   target                = google_compute_target_https_proxy.default.id
   ip_address            = google_compute_global_address.default.id
 }
