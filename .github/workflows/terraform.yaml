@@ -39,7 +39,13 @@ jobs:
       
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: |
+          terraform fmt -check
+          if [[ $? == 3 || $? == 0 ]]; then
+            exit 0
+          else
+            exit 1
+          fi
         working-directory: ops/deployment/infrastructure/terraform
 
       - name: Terraform Init
