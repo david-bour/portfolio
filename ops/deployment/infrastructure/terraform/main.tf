@@ -102,7 +102,7 @@ resource "google_project_service" "firebase_database" {
 resource "google_firebase_database_instance" "default" {
   provider    = google-beta
   region      = "us-central1"
-  instance_id = "rtdb-project-default-rtdb"
+  instance_id = "cloudresume-380001-default-rtdb"
   type        = "DEFAULT_DATABASE"
   depends_on  = [google_project_service.firebase_database]
 }
