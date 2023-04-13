@@ -87,3 +87,8 @@ resource "google_compute_global_forwarding_rule" "default" {
   target                = google_compute_target_https_proxy.default.id
   ip_address            = google_compute_global_address.default.id
 }
+
+# Firebase Project
+resource "google_firebase_project" "default" {
+  provider = google-beta
+}
