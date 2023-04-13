@@ -96,13 +96,13 @@ resource "google_firebase_project" "default" {
 # Firebase Database
 resource "google_project_service" "firebase_database" {
   provider = google-beta
-  service = "firebasedatabase.googleapis.com"
+  service  = "firebasedatabase.googleapis.com"
 }
 
 resource "google_firebase_database_instance" "default" {
-  provider = google-beta
-  region = "us-central1"
+  provider    = google-beta
+  region      = "us-central1"
   instance_id = "rtdb-project-default-rtdb"
-  type = "DEFAULT_DATABASE"
-  depends_on = [google_project_service.firebase_database]
+  type        = "DEFAULT_DATABASE"
+  depends_on  = [google_project_service.firebase_database]
 }
