@@ -42,19 +42,12 @@ jobs:
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
 
-      - run: docker build -t gcr.io/cloudresume-380001/visitor-api:${{ github.sha }} .
-        working-directory: api
-
-      - run: docker push gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
-
-      - run: ls -lsah
-
-      # - name: Build and Push
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: "./api"
-      #     push: true
-      #     tags: gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
+      - name: Build and Push
+        uses: docker/build-push-action@v4
+        with:
+          context: "./api"
+          push: true
+          tags: gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
 
 
       # - id: 'deploy'
