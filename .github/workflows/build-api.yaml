@@ -42,9 +42,10 @@ jobs:
           username: oauth2accesstoken
           password: ${{ steps.auth.outputs.access_token }}
 
-      - run: docker build -t gcr.io/cloudresume-380001/visitor-api:${{ github.sha }} . && \
-             docker push --all-tags
+      - run: docker build -t gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
         working-directory: api
+
+      - run: docker push --all-tags
 
       # - name: Build and Push
       #   uses: docker/build-push-action@v4
