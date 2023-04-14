@@ -49,8 +49,8 @@ jobs:
           push: true
           tags: gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
 
-      # - id: 'deploy'
-      #   uses: 'google-github-actions/deploy-cloudrun@v1'
-      #   with:
-      #     service: 'visitor-api'
-      #     image: 
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v1'
+        with:
+          service: 'visitor-api'
+          image: gcr.io/cloudresume-380001/visitor-api:${{ github.sha }}
