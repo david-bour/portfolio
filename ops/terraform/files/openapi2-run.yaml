@@ -1,0 +1,40 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: visitor-api
+  description: API Gateway for Cloud Run
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://visitor-api-demnfidg2a-uc.a.run.app
+paths:
+  /:
+    get:
+      summary: Home Page
+      operationId: main
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /visitor:
+    get:
+      summary: Get visitor count
+      operationId: get_visitor
+      responses:
+        '200':
+          description: Visitor count
+          schema:
+            type: string
+  /visitor:
+    post:
+      summary: Increase visitor count
+      operationId: set_visitor
+      responses:
+        '200':
+          description: Increase visitor count
+          schema:
+            type: string
