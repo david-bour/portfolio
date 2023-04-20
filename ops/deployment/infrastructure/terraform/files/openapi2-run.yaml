@@ -1,7 +1,7 @@
 # openapi2-run.yaml
 swagger: '2.0'
 info:
-  title: visitor-api
+  title: visitor-api-gateway
   description: API Gateway for Cloud Run
   version: 1.0.0
 schemes:
