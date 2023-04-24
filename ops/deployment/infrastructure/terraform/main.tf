@@ -119,7 +119,7 @@ resource "google_api_gateway_api_config" "api_cfg" {
 
   openapi_documents {
     document {
-      path = "spec.yaml"
+      path     = "spec.yaml"
       contents = filebase64("files/openapi2-run.yaml")
     }
   }
