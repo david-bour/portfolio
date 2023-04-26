@@ -129,7 +129,8 @@ resource "google_api_gateway_api_config" "api_cfg" {
 }
 
 resource "google_api_gateway_gateway" "api_gw" {
-  provider   = "google-beta"
+  provider   = google-beta
   api_config = google_api_gateway_api_config.api_cfg.id
   gateway_id = "visitor-api-gateway"
+  region     = "us-central1"
 }
