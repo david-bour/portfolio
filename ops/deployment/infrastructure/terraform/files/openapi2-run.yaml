@@ -29,7 +29,6 @@ paths:
           description: Visitor count
           schema:
             type: string
-  /visitor:
     post:
       summary: Increase visitor count
       operationId: set_visitor
