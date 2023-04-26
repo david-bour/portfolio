@@ -106,3 +106,24 @@ resource "google_firebase_database_instance" "default" {
   type        = "DEFAULT_DATABASE"
   depends_on  = [google_project_service.firebase_database]
 }
+
+resource "google_api_gateway_api" "api_cfg" {
+  provider = google-beta
+  api_id   = "visitor-api-gateway"
+}
+
+resource "google_api_gateway_api_config" "api_cfg" {
+  provider      = google-beta
+  api           = google_api_gateway_api.api_cfg.api_id
+  api_config_id = "visitor-api-gateway-cfg"
+
+  openapi_documents {
+    document {
+      path     = "spec.yaml"
+      contents = filebase64("files/openapi2-run.yaml")
+    }
+  }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
