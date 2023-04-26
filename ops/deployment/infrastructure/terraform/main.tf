@@ -127,3 +127,9 @@ resource "google_api_gateway_api_config" "api_cfg" {
     create_before_destroy = true
   }
 }
+
+resource "google_api_gateway_gateway" "api_gw" {
+  provider   = "google-beta"
+  api_config = google_api_gateway_api_config.api_cfg.id
+  gateway_id = "visitor-api-gateway"
+}
