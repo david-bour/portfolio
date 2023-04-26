@@ -115,7 +115,7 @@ resource "google_api_gateway_api" "api_cfg" {
 resource "google_api_gateway_api_config" "api_cfg" {
   provider      = google-beta
   api           = google_api_gateway_api.api_cfg.api_id
-  api_config_id = "visitor-api-gateway-cfg"
+  api_config_id = "visitor-api-gateway-cfg-1"
 
   openapi_documents {
     document {
