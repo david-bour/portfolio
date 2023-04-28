@@ -40,8 +40,7 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: |
-          terraform fmt -check
-          echo $?
+          terraform fmt -check && echo $?
           if [[ $? == 3 || $? == 0 ]]; then
             exit 0
           else
