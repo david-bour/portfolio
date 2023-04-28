@@ -41,6 +41,7 @@ jobs:
         id: fmt
         run: |
           terraform fmt -check
+          echo $?
           if [[ $? == 3 || $? == 0 ]]; then
             exit 0
           else
