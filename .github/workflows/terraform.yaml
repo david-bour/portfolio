@@ -19,7 +19,7 @@ jobs:
       contents: 'read'
       id-token: 'write'
       pull-requests: write
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
         with:
           terraform_version: 1.4.2
           cli_config_credentials_token: ${{ steps.auth.outputs.access_token }}
-      
+
       - name: Terraform Format
         id: fmt
         run: |
@@ -52,7 +52,7 @@ jobs:
         id: init
         run: terraform init
         working-directory: ops/deployment/infrastructure/terraform
-      
+
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
@@ -89,7 +89,7 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
-      
+
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1

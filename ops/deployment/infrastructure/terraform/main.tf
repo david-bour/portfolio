@@ -115,8 +115,12 @@ resource "google_service_account" "service_account" {
 }
 
 data "google_iam_policy" "cloudrun-invoker" {
+  provider = google-beta
   binding {
     role = "roles/run.invoker"
+    members = [
+      google_service_account.service_account.member
+    ]
   }
 }
 
