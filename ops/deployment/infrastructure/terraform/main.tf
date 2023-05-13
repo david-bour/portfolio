@@ -119,7 +119,7 @@ data "google_iam_policy" "cloudrun-invoker" {
   binding {
     role = "roles/run.invoker"
     members = [
-      google_service_account.service_account.member
+      "serviceAccount:${google_service_account.service_account.member}"
     ]
   }
 }
