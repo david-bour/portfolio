@@ -114,19 +114,10 @@ resource "google_service_account" "service_account" {
   description  = "Used to run Cloud Run"
 }
 
-data "google_iam_policy" "cloudrun-invoker" {
-  provider = google-beta
-  binding {
-    role = "roles/run.invoker"
-    members = [
-      "serviceAccount:${google_service_account.service_account.member}"
-    ]
-  }
-}
-
-resource "google_service_account_iam_policy" "default" {
-  service_account_id = google_service_account.service_account.name
-  policy_data        = data.google_iam_policy.cloudrun-invoker.policy_data
+resource "google_project_iam_member" "cloudrun-invoker" {
+  project = "cloudresume-380001"
+  role    = "roles/run.invoker"
+  member  = google_service_account.service_account.member
 }
 
 resource "google_api_gateway_api" "api_cfg" {
