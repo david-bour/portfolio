@@ -115,8 +115,9 @@ resource "google_service_account" "service_account" {
 }
 
 resource "google_project_iam_member" "cloudrun-invoker" {
-  role   = "roles/run.invoker"
-  member = google_service_account.service_account.member
+  project = "cloudresume-380001"
+  role    = "roles/run.invoker"
+  member  = google_service_account.service_account.member
 }
 
 # data "google_iam_policy" "cloudrun-invoker" {
