@@ -126,7 +126,7 @@ data "google_iam_policy" "cloudrun-invoker" {
 
 resource "google_service_account_iam_policy" "default" {
   service_account_id = google_service_account.service_account.name
-  policy_data = data.google_iam_policy.cloudrun-invoker.policy_data
+  policy_data        = data.google_iam_policy.cloudrun-invoker.policy_data
 }
 
 resource "google_api_gateway_api" "api_cfg" {
