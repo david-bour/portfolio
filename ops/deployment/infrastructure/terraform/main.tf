@@ -107,6 +107,28 @@ resource "google_firebase_database_instance" "default" {
   depends_on  = [google_project_service.firebase_database]
 }
 
+# Create service account to execute Cloud Run
+resource "google_service_account" "service_account" {
+  account_id   = "cloud-run-invoker"
+  display_name = "Cloud Run Invoker"
+  description  = "Used to run Cloud Run"
+}
+
+data "google_iam_policy" "cloudrun-invoker" {
+  provider = google-beta
+  binding {
+    role = "roles/run.invoker"
+    members = [
+      google_service_account.service_account.member
+    ]
+  }
+}
+
+resource "google_service_account_iam_policy" "default" {
+  service_account_id = google_service_account.service_account.name
+  policy_data        = data.google_iam_policy.cloudrun-invoker.policy_data
+}
+
 resource "google_api_gateway_api" "api_cfg" {
   provider = google-beta
   api_id   = "visitor-api-gateway"
@@ -116,6 +138,12 @@ resource "google_api_gateway_api_config" "api_cfg" {
   provider      = google-beta
   api           = google_api_gateway_api.api_cfg.api_id
   api_config_id = "visitor-api-gateway-cfg-1"
+
+  gateway_config {
+    backend_config {
+      google_service_account = google_service_account.service_account.name
+    }
+  }
 
   openapi_documents {
     document {
