@@ -119,37 +119,3 @@ resource "google_project_iam_member" "cloudrun-invoker" {
   role    = "roles/run.invoker"
   member  = google_service_account.service_account.member
 }
-
-resource "google_api_gateway_api" "api_cfg" {
-  provider = google-beta
-  api_id   = "visitor-api-gateway"
-}
-
-resource "google_api_gateway_api_config" "api_cfg" {
-  provider      = google-beta
-  api           = google_api_gateway_api.api_cfg.api_id
-  api_config_id = "visitor-api-gateway-cfg"
-
-  gateway_config {
-    backend_config {
-      google_service_account = google_service_account.service_account.name
-    }
-  }
-
-  openapi_documents {
-    document {
-      path     = "spec.yaml"
-      contents = filebase64("files/openapi2-run.yaml")
-    }
-  }
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "google_api_gateway_gateway" "api_gw" {
-  provider   = google-beta
-  api_config = google_api_gateway_api_config.api_cfg.id
-  gateway_id = "visitor-api-gateway"
-  region     = "us-central1"
-}
