@@ -15,7 +15,7 @@ const pageTitle="David Bour"
         <a href="/">Home</a>
         <a href="/blog/">Blog</a>
 	
-		<h1>David Bour</h1>
+		<h1>David Bour 🧙</h1>
 		<h2>'The reasonable man adapts himself to the world; the unreasonable man persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man.'</h2>
 		<p>
 			<h3>Posts</h3>
@@ -33,11 +33,8 @@ const pageTitle="David Bour"
 
 <script>
 
-	fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"})
-		.then(response => console.log(response.ok));
-	fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
-		.then(response => response.json())
-		.then(result => {
+	fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"}).then(response => console.log(response.ok));
+	fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"}).then(response => response.json()).then(result => {
 			console.log(`The count is ${result}`);
 			document.getElementById("counter")!.textContent=result.visitorCount;
 		})
