@@ -67,7 +67,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
   name = "cloud-resume-cert"
 
   managed {
-    domains = ["davidbour.com"]
+    domains = ["davidbour.com", "api.davidbour.com", "www.davidbour.com"]
   }
 }
 
