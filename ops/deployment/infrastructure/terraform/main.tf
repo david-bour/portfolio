@@ -64,7 +64,7 @@ resource "google_compute_url_map" "default" {
 
 # SSL Managed Certificate
 resource "google_compute_managed_ssl_certificate" "default" {
-  name = "cloud-resume-cert-1"
+  name = "cloud-resume-cert-managed"
 
   managed {
     domains = ["davidbour.com", "api.davidbour.com", "www.davidbour.com"]
