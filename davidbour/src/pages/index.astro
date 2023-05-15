@@ -40,12 +40,13 @@ const pageTitle="David Bour"
 	class AstroVisitorCount extends HTMLElement {
 		constructor() {
 			super();
-			let count = 0;
-
 			const countSpan = this.querySelector('span');
-			fetch("https://api.davidbour.com/visitor")
+			fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
 				.then(response => response.json())
-				.then(visitorCount => console.log(visitorCount.visitorCount));
+				.then(visitorCount => {
+					console.log(visitorCount.visitorCount);
+					countSpan.textContent = visitorCount.visitorCount;
+				});
 		}
 	}
 	customElements.define('astro-visitor-count', AstroVisitorCount);
