@@ -44,6 +44,7 @@ const pageTitle="David Bour"
 			fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
 				.then(response => response.json())
 				.then(visitorCount => {
+					console.log("Visitor Count")
 					console.log(visitorCount.visitorCount);
 					countSpan.textContent = visitorCount.visitorCount;
 				});
