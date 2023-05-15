@@ -1,10 +1,5 @@
 ---
 import '../styles/global.css'
-
-const visitorPostResponse = await fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"})
-const visitorGetResponse = await fetch("https://api.davidbour.com/visitor")
-const visitorPostData = await visitorGetResponse.json();
-const visitorGetData = await visitorPostResponse.json();
 const pageTitle="David Bour"
 ---
 
@@ -32,6 +27,26 @@ const pageTitle="David Bour"
 		</p>
 	</body>
 	<footer>
-		You are visitor: {visitorGetData.visitorCount}
+		<astro-visitor-count>
+			<p>You are visitor: <span>0</span></p>
+		</astro-visitor-count>
 	</footer>
 </html>
+
+<script>
+
+	fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"})
+		.then(response => console.log(response.ok));
+	class AstroVisitorCount extends HTMLElement {
+		constructor() {
+			super();
+			let count = 0;
+
+			const countSpan = this.querySelector('span');
+			fetch("https://api.davidbour.com/visitor")
+				.then(response => response.json())
+				.then(visitorCount => console.log(visitorCount.visitorCount));
+		}
+	}
+	customElements.define('astro-visitor-count', AstroVisitorCount);
+</script>
