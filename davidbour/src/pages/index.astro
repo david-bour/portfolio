@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css'
+
+const visitorPostResponse = await fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"})
+const visitorGetResponse = await fetch("https://api.davidbour.com/visitor")
+const visitorPostData = await visitorGetResponse.json();
+const visitorGetData = await visitorPostResponse.json();
 const pageTitle="David Bour"
 ---
 
@@ -26,4 +31,7 @@ const pageTitle="David Bour"
 			</ul>
 		</p>
 	</body>
+	<footer>
+		You are visitor: {visitorGetData.visitorCount}
+	</footer>
 </html>
