@@ -27,9 +27,7 @@ const pageTitle="David Bour"
 		</p>
 	</body>
 	<footer>
-		<astro-visitor-count>
-			You are visitor: <span>0</span>
-		</astro-visitor-count>
+		You are visitor: <span id="counter">0</span>
 	</footer>
 </html>
 
@@ -37,18 +35,12 @@ const pageTitle="David Bour"
 
 	fetch("https://api.davidbour.com/visitor", {method: "POST", mode: "no-cors"})
 		.then(response => console.log(response.ok));
-	class AstroVisitorCount extends HTMLElement {
-		constructor() {
-			super();
-			fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
-				.then(response => response.json())
-				.then(visitorCount => {
-					const countSpan = this.querySelector('span');
-					console.log(`The current count is ${countSpan.textContent}`)
-					console.log(visitorCount.visitorCount);
-					countSpan.textContent = visitorCount.visitorCount;
-				});
-		}
-	}
-	customElements.define('astro-visitor-count', AstroVisitorCount);
+	fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
+		.then(response => response.json())
+		.then(result => {
+			console.log(`The count is ${result}`);
+			document.getElementById("counter")!.textContent=result.visitorCount;
+		})
+
+
 </script>
