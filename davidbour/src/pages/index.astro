@@ -28,7 +28,7 @@ const pageTitle="David Bour"
 	</body>
 	<footer>
 		<astro-visitor-count>
-			<p>You are visitor: <span>0</span></p>
+			You are visitor: <span>0</span>
 		</astro-visitor-count>
 	</footer>
 </html>
@@ -40,11 +40,11 @@ const pageTitle="David Bour"
 	class AstroVisitorCount extends HTMLElement {
 		constructor() {
 			super();
-			const countSpan = this.querySelector('span');
 			fetch("https://api.davidbour.com/visitor", {method: "GET", mode: "no-cors"})
 				.then(response => response.json())
 				.then(visitorCount => {
-					console.log("Visitor Count")
+					const countSpan = this.querySelector('span');
+					console.log(`The current count is ${countSpan.textContent}`)
 					console.log(visitorCount.visitorCount);
 					countSpan.textContent = visitorCount.visitorCount;
 				});
