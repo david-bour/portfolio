@@ -37,7 +37,7 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
 
     labels = {
-      env = var.proejct_id
+      env = var.project_id
     }
 
     machine_type = "n1-standard-1"
