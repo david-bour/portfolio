@@ -41,10 +41,13 @@ tf-service-account:
 	gcloud iam service-accounts create tf-provider \
 		--project ${PROJECT_ID} \
 		--description="Terraform" \
-		--display-name="Terraform" || true && \
+		--display-name="Terraform" && \
 	gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 		--member="serviceAccount:tf-provider@${PROJECT_ID}.iam.gserviceaccount.com" \
-		--role="roles/editor" || true && \
+		--role="roles/editor" && \
+	gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+		--member="serviceAccount:tf-provider@${PROJECT_ID}.iam.gserviceaccount.com" \
+		--role="roles/iam.securityAdmin" && \
 	gcloud iam service-accounts add-iam-policy-binding tf-provider@${PROJECT_ID}.iam.gserviceaccount.com \
 		--project="${PROJECT_ID}" \
 		--role="roles/iam.workloadIdentityUser" \
