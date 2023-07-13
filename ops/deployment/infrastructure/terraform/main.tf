@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "cloud-resume-db-tf-state"
+    bucket = "cloud-resume-tf-state-db"
     prefix = "terraform/state"
   }
   required_providers {
