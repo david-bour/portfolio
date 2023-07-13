@@ -28,8 +28,8 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           token_format: 'access_token'
-          workload_identity_provider: 'projects/650273226296/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions'
-          service_account: 'tf-provider@cloudresume-380001.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/774194386647/locations/global/workloadIdentityPools/gh-actions-pool/providers/gh-actions'
+          service_account: 'tf-provider@cloudops-388321.iam.gserviceaccount.com'
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2

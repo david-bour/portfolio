@@ -5,7 +5,7 @@
 # identity to GitHub action runners
 # ##########################################
 
-PROJECT_ID="cloudresume-380001"
+PROJECT_ID="cloudops-388321"
 WORKLOAD_ID_POOL="gh-actions-pool"
 WORKLOAD_ID_PROVIDER="gh-actions"
 
