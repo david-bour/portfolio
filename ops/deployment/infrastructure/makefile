@@ -32,7 +32,10 @@ gha-service-account:
 		--display-name="GitHub Actions" && \
 	gcloud projects add-iam-policy-binding ${PROJECT_ID} \
 		--member="serviceAccount:github-actions@${PROJECT_ID}.iam.gserviceaccount.com" \
-		--role="roles/storage.objectAdmin"
+		--role="roles/storage.objectAdmin" && \
+	gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+		--member="serviceAccount:github-actions@${PROJECT_ID}.iam.gserviceaccount.com" \
+		--role="roles/run.admin"
 
 # Creates a powerful service account to manage our infrastructure
 # Sets the workload identity for the service account so it can
