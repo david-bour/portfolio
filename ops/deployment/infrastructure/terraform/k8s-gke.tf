@@ -9,8 +9,8 @@ variable "gke_password" {
 }
 
 variable "gke_num_nodes" {
-    default     = 2
-    description = "number of gke nodes"
+  default     = 2
+  description = "number of gke nodes"
 }
 
 resource "google_container_cluster" "primary" {
