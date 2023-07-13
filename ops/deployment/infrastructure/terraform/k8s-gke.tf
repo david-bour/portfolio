@@ -9,7 +9,7 @@ variable "gke_password" {
 }
 
 variable "gke_num_nodes" {
-  default     = 2
+  default     = 1
   description = "number of gke nodes"
 }
 
@@ -21,7 +21,7 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 
   node_config {
-    disk_size_gb = 50
+    disk_size_gb = 40
   }
 
   network    = google_compute_network.vpc.name
