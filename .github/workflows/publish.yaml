@@ -41,5 +41,5 @@ jobs:
       - uses: 'google-github-actions/upload-cloud-storage@v1'
         with:
           path: './davidbour/dist/'
-          destination: 'davidbour-cloud-resume/'
+          destination: 'davidbour-cloud-resume-db/'
           parent: false
