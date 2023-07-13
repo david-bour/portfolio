@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "cloud-resume-tf-state"
+    bucket = "cloud-resume-tf-state-db"
     prefix = "terraform/state"
   }
   required_providers {
@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "google" {
-  project = "cloudresume-380001"
+  project = "cloudops-388321"
 }
 
 # Reserve IP address
@@ -22,7 +22,7 @@ resource "google_compute_global_address" "default" {
 
 # Create Bucket
 resource "google_storage_bucket" "default" {
-  name          = "davidbour-cloud-resume"
+  name          = "davidbour-cloud-resume-db"
   location      = "us-east1"
   force_destroy = true
 
@@ -42,7 +42,7 @@ resource "google_storage_bucket_iam_member" "default" {
 
 # Create Backend Bucket (Not the same as the bucket itself)
 resource "google_compute_backend_bucket" "default" {
-  name        = "cloud-resume-backend-bucket"
+  name        = "cloud-resume-db-backend-bucket"
   description = "cloud resume backend"
   bucket_name = google_storage_bucket.default.name
   enable_cdn  = true
@@ -102,7 +102,7 @@ resource "google_project_service" "firebase_database" {
 resource "google_firebase_database_instance" "default" {
   provider    = google-beta
   region      = "us-central1"
-  instance_id = "cloudresume-380001-default-rtdb"
+  instance_id = "cloudops-388321-default-rtdb"
   type        = "DEFAULT_DATABASE"
   depends_on  = [google_project_service.firebase_database]
 }
@@ -115,7 +115,7 @@ resource "google_service_account" "service_account" {
 }
 
 resource "google_project_iam_member" "cloudrun-invoker" {
-  project = "cloudresume-380001"
+  project = "cloudops-388321"
   role    = "roles/run.invoker"
   member  = google_service_account.service_account.member
 }
