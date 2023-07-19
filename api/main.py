@@ -25,6 +25,10 @@ app.add_middleware(
 def main():
     return {"Hello": "World"}
 
+@app.get("/info")
+def info():
+    return os.environ.get('GITSHA', 'NONE')
+
 @app.get("/visitor")
 def get_visitor():
     return {"visitorCount": gcp_firebase.get_visitor_count()}
