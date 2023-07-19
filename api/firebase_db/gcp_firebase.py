@@ -5,7 +5,7 @@ from firebase_admin import db, initialize_app
 logger = logging.getLogger(__name__)
 
 database = initialize_app(
-    None, {'databaseURL': 'https://cloudresume-380001-default-rtdb.firebaseio.com/'})
+    None, {'databaseURL': 'https://cloudops-388321-default-rtdb.firebaseio.com/'})
 database_ref = db.reference('/')
 
 def seed(reset=False):
