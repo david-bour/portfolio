@@ -1,3 +1,7 @@
+variable "zone" {
+  description = "zone"
+}
+
 variable "gke_username" {
   default     = ""
   description = "gke username"
