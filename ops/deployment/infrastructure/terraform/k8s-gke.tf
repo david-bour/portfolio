@@ -25,7 +25,7 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 
   node_config {
-    disk_size_gb = 40
+    disk_size_gb = 100
   }
 
   network    = google_compute_network.vpc.name
