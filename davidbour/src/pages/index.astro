@@ -12,22 +12,7 @@ const pageTitle="David Bour"
 		<title>{pageTitle}</title>
 	</head>
 	<body>
-        <a href="/">Home</a>
 		<h1>David Bour</h1>
 	</body>
-	<footer>
-		You are visitor: <span id="counter"></span>
-	</footer>
 </html>
 
-<script>
-	fetch("https://api.davidbour.com/visitor", {method: "POST"})
-		.then(response => console.log(response.ok));
-	fetch("https://api.davidbour.com/visitor")
-		.then(response => {
-			return response.json()
-		})
-		.then(result => {
-			document.getElementById("counter")!.textContent=result.visitorCount;
-		})
-</script>
