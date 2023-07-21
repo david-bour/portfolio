@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/david-bour/portfolio.git
     targetRevision: main
-    path: ops/deployment/deployments/apps/environments/dev
+    path: ./ops/deployment/deployments/apps/environments/dev
     directory:
       recurse: true
   destination:
