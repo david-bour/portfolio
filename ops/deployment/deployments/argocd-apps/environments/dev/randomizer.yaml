@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/david-bour/portfolio.git
     targetRevision: HEAD
-    path: ./ops/deployment/app/environments/dev
+    path: ops/deployment/app/environments/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: randomizer-dev
