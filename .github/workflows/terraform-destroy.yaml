@@ -29,6 +29,10 @@ jobs:
           terraform_version: 1.4.2
           cli_config_credentials_token: ${{ steps.auth.outputs.access_token }}
 
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ops/deployment/infrastructure/terraform
+
       - name: Terraform Clean
         run: terraform destroy -auto-approve
         working-directory: ops/deployment/infrastructure/terraform
